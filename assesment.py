@@ -3,6 +3,12 @@ import pytest
 
 def add_list(numbers: list[str]) -> int:
 
+    '''
+    Created this function to handle negative number
+    for both the cases. 
+    The , delimeter and unknown delimeter.
+    '''
+
     neagtive_num = [ int(num) for num in numbers if int(num) < 0]
 
     if neagtive_num:
