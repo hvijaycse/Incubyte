@@ -7,6 +7,7 @@ def Add(string: str) -> int:
     
     elif "," in string:
         numbers = string.split(",")
+
         return sum(int(num) for num in numbers)
     
     else:
@@ -32,4 +33,12 @@ def test_add_doubles():
     assert Add("20, 40") == 60
 
 
+'''
+Solving second requriement of unknown amount of numbers.
+'''
 
+
+def test_add_unknown():
+
+    assert Add("1,2,3,4")  == 10
+    assert Add("3, 9, 12") == 24
