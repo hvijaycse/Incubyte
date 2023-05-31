@@ -5,6 +5,17 @@ def Add(string: str) -> int:
     if string == "":
         return 0 
     
+    if string[:2] == "//":
+
+        idx = string.index('\n')
+
+        delimeter = string[2: idx]
+
+        numbers = string[idx: ].split(delimeter)
+
+        return sum(int(num) for num in numbers)
+    
+    
     elif "," in string or "\n" in string:
 
         string = string.replace("\n", ",")
@@ -60,3 +71,17 @@ def test_add_next_line():
     with pytest.raises(Exception) as excinfo:
         Add("1,\n")
     assert str(excinfo.value) == "invalid literal for int() with base 10: ''"
+
+
+'''
+Solving 4th requirement. Sipport different delimeter.
+'''
+
+
+
+def test_different_delimeter():
+
+
+    assert Add("//;\n1;2") == 3
+    # using  ;; as delimeter
+    assert Add("//;;\n1;;2") == 3
