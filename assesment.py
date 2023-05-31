@@ -1,11 +1,14 @@
-
+import pytest
 
 def Add(string: str) -> int:
 
     if string == "":
         return 0 
     
-    elif "," in string:
+    elif "," in string or "\n" in string:
+
+        string = string.replace("\n", ",")
+
         numbers = string.split(",")
 
         return sum(int(num) for num in numbers)
@@ -42,3 +45,18 @@ def test_add_unknown():
 
     assert Add("1,2,3,4")  == 10
     assert Add("3, 9, 12") == 24
+
+
+'''
+Solving third requirement.
+'''
+
+
+def test_add_next_line():
+
+
+    assert Add("1\n2,3") == 6
+    
+    with pytest.raises(Exception) as excinfo:
+        Add("1,\n")
+    assert str(excinfo.value) == "invalid literal for int() with base 10: ''"
